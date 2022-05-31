@@ -18,17 +18,23 @@ function submited(event) {
   var dataObject = {
     titleText: title,
     notesText: notes,
-    imgUrl: img
+    imgUrl: img,
+    entryId: data.nextEntryId
   };
-  dataObject.nextEntryId = data.nextEntryId;
   data.nextEntryId++;
   data.entries.push(dataObject);
   $imgHolder.setAttribute('src', 'images/placeholder-image-square.jpg');
   $submit.reset();
 }
 
+var previous = {};
+var previousTodosJSON = localStorage.getItem('localStorage');
+if (previousTodosJSON !== null) {
+  previous = JSON.parse(previousTodosJSON);
+}
+
 window.addEventListener('beforeunload', tasks);
 function tasks(event) {
-  var dataJSON = JSON.stringify(data);
-  localStorage.setItem('localStorage', dataJSON);
+  window.localStorage.setItem('previousStroage', JSON.stringify(previous));
+  window.localStorage.setItem('currentStorage', JSON.stringify(data));
 }
