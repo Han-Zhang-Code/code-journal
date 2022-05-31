@@ -1,3 +1,4 @@
+/* global data */
 var $photourl = document.querySelector('#photo-url');
 var $imgHolder = document.querySelector('.adjust-img');
 $photourl.addEventListener('input', addImg);
@@ -22,7 +23,7 @@ function submited(event) {
     entryId: data.nextEntryId
   };
   data.nextEntryId++;
-  data.entries.push(dataObject);
+  data.entries.unshift(dataObject);
   $imgHolder.setAttribute('src', 'images/placeholder-image-square.jpg');
   $submit.reset();
 }

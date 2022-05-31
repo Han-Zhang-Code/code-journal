@@ -14,15 +14,11 @@
 }
 
 .adjust-img {
-  width: 400px;
-  width: 100%;
   padding-right: 10px;
 }
 
 .adjust-title {
   font-size: 25px;
-  padding-top: 15px;
-  padding-bottom: 15px;
   font-weight: normal;
   font-family:
     "Gill Sans",
@@ -41,7 +37,6 @@
 }
 
 .input-area {
-  width: 100%;
   display: block;
   padding: 0.5rem;
   margin-bottom: 15px;
