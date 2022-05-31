@@ -26,15 +26,3 @@ function submited(event) {
   $imgHolder.setAttribute('src', 'images/placeholder-image-square.jpg');
   $submit.reset();
 }
-
-var previous = {};
-var previousTodosJSON = localStorage.getItem('localStorage');
-if (previousTodosJSON !== null) {
-  previous = JSON.parse(previousTodosJSON);
-}
-
-window.addEventListener('beforeunload', tasks);
-function tasks(event) {
-  window.localStorage.setItem('previousStroage', JSON.stringify(previous));
-  window.localStorage.setItem('currentStorage', JSON.stringify(data));
-}
