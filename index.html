@@ -17,12 +17,18 @@
 </head>
 <body class="add-background-color-main">
   <header class="adjust-nav">
-    <div class="container">Code Journal</div>
+    <div class="container">
+      <div class="column-full">
+        Code Journal
+      </div>
+    </div>
   </header>
   <div data-view="entry-form">
     <form id="entry-form">
       <main class="container">
-        <h3 class="adjust-title">New Entry</h3>
+        <div class="column-full">
+          <h3 class="adjust-title">New Entry</h3>
+        </div>
         <div class="row">
           <div class="column-half">
             <img src="images/placeholder-image-square.jpg" alt="placeholder-image-square" class="adjust-img column-full">
@@ -42,14 +48,16 @@
             </div>
           </div>
         </div>
-        <div>
-          <label class="adjust-label add-padding-top">Notes</label>
-        </div>
-        <div>
-          <textarea required rows="7" class="input-area column-full" id="notes"></textarea>
-        </div>
-        <div class="row adjust-button-position">
-          <button type="submit" id="submit">Save</button>
+        <div class="column-full">
+          <div>
+            <label class="adjust-label add-padding-top">Notes</label>
+          </div>
+          <div>
+            <textarea required rows="7" class="input-area column-full" id="notes"></textarea>
+          </div>
+          <div class="row adjust-button-position">
+            <button type="submit" id="submit">Save</button>
+          </div>
         </div>
       </main>
     </form>
