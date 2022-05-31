@@ -1,0 +1,65 @@
+.adjust-nav {
+  background-color: #552b81;
+  color: white;
+  font-size: 20px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-family:
+    "Gill Sans",
+    sans-serif;
+}
+
+.add-background-color-main {
+  background-color: #f0f0f0;
+}
+
+.adjust-img {
+  padding-right: 10px;
+  padding-left: 0;
+}
+
+.adjust-title {
+  font-size: 25px;
+  font-weight: normal;
+  font-family:
+    "Gill Sans",
+    sans-serif;
+}
+
+.adjust-label {
+  font-weight: normal;
+  font-size: 15px;
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 8px;
+  font-family:
+    "Gill Sans",
+    sans-serif;
+}
+
+.input-area {
+  display: block;
+  padding: 0.5rem;
+  margin-bottom: 15px;
+  border: 1px solid rgb(189 189 189);
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.add-padding-top {
+  padding-top: 20px;
+}
+
+.adjust-button-position {
+  justify-content: flex-end;
+  padding-bottom: 50px;
+}
+
+button {
+  background-color: #552b81;
+  color: white;
+  border: none;
+  font-size: 15px;
+  border-radius: 5px;
+  padding: 5px 10px;
+}

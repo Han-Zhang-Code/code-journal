@@ -15,11 +15,54 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-  <header>
+<body class="add-background-color-main">
+  <header class="adjust-nav">
+    <div class="container">
+      <div class="column-full">
+        Code Journal
+      </div>
+    </div>
   </header>
-  <main>
-  </main>
+  <div data-view="entry-form">
+    <form id="entry-form">
+      <main class="container">
+        <div class="column-full">
+          <h3 class="adjust-title">New Entry</h3>
+        </div>
+        <div class="row">
+          <div class="column-half">
+            <img src="images/placeholder-image-square.jpg" alt="placeholder-image-square" class="adjust-img column-full">
+          </div>
+          <div class="column-half">
+            <div>
+              <label class="adjust-label">Title</label>
+            </div>
+            <div>
+              <input required name="name" type="text" class="input-area column-full" id="title">
+            </div>
+            <div>
+              <label class="adjust-label">Photo URL</label>
+            </div>
+            <div>
+              <input required name="photo" type="text" class="input-area column-full" id="photo-url">
+            </div>
+          </div>
+        </div>
+        <div class="column-full">
+          <div>
+            <label class="adjust-label add-padding-top">Notes</label>
+          </div>
+          <div>
+            <textarea required rows="7" class="input-area column-full" id="notes"></textarea>
+          </div>
+          <div class="row adjust-button-position">
+            <button type="submit" id="submit">Save</button>
+          </div>
+        </div>
+      </main>
+    </form>
+  </div>
+
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
