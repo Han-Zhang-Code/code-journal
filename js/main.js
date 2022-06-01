@@ -11,7 +11,6 @@ if (data.entries.length === 0) {
   $createRow.appendChild($createEmptyContent);
   $createEmptyContent.appendChild($createContent);
 }
-
 var $photourl = document.querySelector('#photo-url');
 var $imgHolder = document.querySelector('.adjust-img');
 $photourl.addEventListener('input', addImg);
@@ -42,6 +41,11 @@ function submited(event) {
 
   var $selectContainer = document.querySelector('ul');
   $selectContainer.prepend(generageEntryDomTree(data.entries[0]));
+
+  var $selectNoRecordElement = document.querySelector('.set-middle');
+  $selectNoRecordElement.className = 'hidden';
+
+  viewEntries();
 }
 
 window.addEventListener('DOMContentLoaded', loadDomTree);
