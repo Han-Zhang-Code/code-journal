@@ -41,11 +41,9 @@ function submited(event) {
 
   var $selectContainer = document.querySelector('ul');
   $selectContainer.prepend(generageEntryDomTree(data.entries[0]));
-
+  viewEntries();
   var $selectNoRecordElement = document.querySelector('.set-middle');
   $selectNoRecordElement.className = 'hidden';
-
-  viewEntries();
 }
 
 window.addEventListener('DOMContentLoaded', loadDomTree);
@@ -90,7 +88,7 @@ $entriesNavButton.addEventListener('click', viewEntries);
 function viewEntries(event) {
   for (var i = 0; i < $views.length; i++) {
     if ($views[i].getAttribute('data-view') === 'entry-form') {
-      $views[i].className = 'hidden';
+      $views[i].className = 'view hidden';
     } else if ($views[i].getAttribute('data-view') !== 'entry-form') {
       $views[i].className = 'view';
     }
@@ -104,7 +102,7 @@ function toNewEntry(event) {
     if ($views[i].getAttribute('data-view') === 'entry-form') {
       $views[i].className = 'view';
     } else if ($views[i].getAttribute('data-view') !== 'entry-form') {
-      $views[i].className = 'hidden';
+      $views[i].className = 'view hidden';
     }
   }
 }
