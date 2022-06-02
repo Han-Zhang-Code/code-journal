@@ -61,7 +61,6 @@ function generageEntryDomTree(entry) {
   var $createIcon = document.createElement('i');
   $createIcon.setAttribute('class', 'fa-solid fa-pen-to-square');
   $createIcon.setAttribute('data-entry-id', entry.entryId);
-  // $createIcon.addEventListener('click', function callback() { editing(entry); });
   var $createContentdiv = document.createElement('div');
   $createContentdiv.setAttribute('class', 'list-content');
   $createContentdiv.textContent = entry.notesText;
@@ -77,7 +76,6 @@ function generageEntryDomTree(entry) {
   return $createList;
 }
 function loadDomTree(event) {
-  // console.log(data);
   var $selectContainer = document.querySelector('ul');
   for (var i = 0; i < data.entries.length; i++) {
     var $appendToview = generageEntryDomTree(data.entries[i]);
@@ -99,14 +97,11 @@ function viewEntries(event) {
 }
 
 var $anchor = document.querySelector('#anchor');
-// $anchor.addEventListener('click', () => { toNewEntry('add'); });
 $anchor.addEventListener('click', toNewEntry);
-// function toNewEntry(action, data) {
 function toNewEntry(event) {
-  // console.log('hihi', action);
   for (var i = 0; i < $views.length; i++) {
     if ($views[i].getAttribute('data-view') === 'entry-form') {
-      // clean();
+      clean();
       $views[i].className = 'view';
     } else if ($views[i].getAttribute('data-view') !== 'entry-form') {
       $views[i].className = 'view hidden';
@@ -136,20 +131,14 @@ function editing(event) {
     }
   }
 }
-
-// function clean() {
-//   $header1 = document.querySelector('#form-title');
-//   $header1.innerHTML = 'New Entry';
-//   $title = document.querySelector('#title');
-//   $title.value = '';
-// }
-
-// function prePopular(data) {
-//   console.log(data);
-//   toNewEntry('edit', data);
-//   $header1 = document.querySelector('#form-title');
-//   console.log('hihi', $title);
-//   $header1.innerHTML = 'editentry';
-//   $title = document.querySelector('#title');
-//   $title.value = data.titleText;
-// }
+function clean() {
+  var $header = document.querySelector('#form-title');
+  $header.innerHTML = 'New Entry';
+  var $title = document.querySelector('#title');
+  $title.value = '';
+  var $notes = document.querySelector('#notes');
+  $notes.value = '';
+  var $photoUrl = document.querySelector('#photo-url');
+  $photoUrl.value = '';
+  $imgHolder.setAttribute('src', 'images/placeholder-image-square.jpg');
+}
