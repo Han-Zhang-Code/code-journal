@@ -33,9 +33,13 @@ function submited(event) {
 
   var $selectContainer = document.querySelector('ul');
   $selectContainer.prepend(generageEntryDomTree(data.entries[0]));
+
+  if (data.entries.length === 1) {
+    var $selectNoRecordElement = document.querySelector('.set-middle');
+    $selectNoRecordElement.className = 'hidden';
+  }
+
   viewEntries();
-  var $selectNoRecordElement = document.querySelector('.set-middle');
-  $selectNoRecordElement.className = 'hidden';
 }
 
 window.addEventListener('DOMContentLoaded', loadDomTree);
