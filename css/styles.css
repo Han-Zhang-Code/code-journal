@@ -21,6 +21,7 @@
 .adjust-title {
   font-size: 25px;
   font-weight: normal;
+  padding-left: 0.75rem;
   font-family:
     "Gill Sans",
     sans-serif;
@@ -62,4 +63,73 @@ button {
   font-size: 15px;
   border-radius: 5px;
   padding: 5px 10px;
+}
+
+.list-title {
+  font-size: 30px;
+  list-style: none;
+  font-family:
+    "Gill Sans",
+    sans-serif;
+  padding-bottom: 15px;
+  font-weight: bold;
+  padding-left: 0;
+}
+
+.set-font-family {
+  font-family:
+    "Gill Sans",
+    sans-serif;
+}
+
+ul {
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+.list-content {
+  font-size: 20px;
+  list-style: none;
+  font-family:
+    "Lucida Sans",
+    "Lucida Sans Regular",
+    "Lucida Grande",
+    "Lucida Sans Unicode",
+    Geneva,
+    Verdana,
+    sans-serif;
+}
+
+.header-entries {
+  font-size: 12px;
+  padding-left: 15px;
+}
+
+.header-entries:hover {
+  cursor: pointer;
+}
+
+.set-middle {
+  margin: auto;
+}
+
+.adjust-position {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.adjust-anchor {
+  background-color: #552b81;
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  font-family:
+    "Gill Sans",
+    sans-serif;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.adjust-anchor:hover {
+  cursor: pointer;
 }
