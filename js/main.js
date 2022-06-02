@@ -1,15 +1,7 @@
 /* global data */
-if (data.entries.length === 0) {
-  var $createRow = document.createElement('div');
-  $createRow.setAttribute('class', 'row');
-  var $createEmptyContent = document.createElement('div');
-  $createEmptyContent.setAttribute('class', 'set-middle');
-  var $createContent = document.createElement('p');
-  $createContent.textContent = 'No entries have been recorded';
-  var $appendToEntries = document.querySelector('#entries');
-  $appendToEntries.appendChild($createRow);
-  $createRow.appendChild($createEmptyContent);
-  $createEmptyContent.appendChild($createContent);
+if (data.entries.length !== 0) {
+  var $selectNoRecordElement = document.querySelector('.set-middle');
+  $selectNoRecordElement.className = 'hidden';
 }
 var $photourl = document.querySelector('#photo-url');
 var $imgHolder = document.querySelector('.adjust-img');

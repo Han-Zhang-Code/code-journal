@@ -21,6 +21,7 @@
 .adjust-title {
   font-size: 25px;
   font-weight: normal;
+  padding-left: 0.75rem;
   font-family:
     "Gill Sans",
     sans-serif;
@@ -75,6 +76,12 @@ button {
   padding-left: 0;
 }
 
+.set-font-family {
+  font-family:
+    "Gill Sans",
+    sans-serif;
+}
+
 ul {
   padding-inline-start: 0;
   list-style: none;
@@ -107,7 +114,6 @@ ul {
 }
 
 .adjust-position {
-  display: flex;
   justify-content: space-between;
   align-items: center;
 }
