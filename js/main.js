@@ -34,7 +34,7 @@ function submited(event) {
         data.entries[editId].notesText = dataObject.notesText;
         data.entries[editId].imgUrl = dataObject.imgUrl;
         var $currentListItem = document.querySelector(`[data-entry-id="${data.editing.entryId}"]`);
-        $currentListItem.setAttribute('data-entry-id', dataObject.entryId);
+        $currentListItem.setAttribute('data-entry-id', editId);
         var $createRow = document.createElement('div');
         $createRow.setAttribute('class', 'row');
         var $createColumn = document.createElement('div');
