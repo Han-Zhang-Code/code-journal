@@ -25,7 +25,7 @@ function submited(event) {
     notesText: notes,
     imgUrl: img
   };
-  var editId = -1;
+  var editId;
   if (data.editing !== null) {
     for (var i = 0; i < data.entries.length; i++) {
       if (data.entries[i].entryId === data.editing.entryId) {
@@ -33,40 +33,44 @@ function submited(event) {
         data.entries[editId].titleText = dataObject.titleText;
         data.entries[editId].notesText = dataObject.notesText;
         data.entries[editId].imgUrl = dataObject.imgUrl;
-        var $currentListItem = document.querySelector(`[data-entry-id="${data.editing.entryId}"]`);
-        $currentListItem.setAttribute('data-entry-id', editId);
-        var $createRow = document.createElement('div');
-        $createRow.setAttribute('class', 'row');
-        var $createColumn = document.createElement('div');
-        $createColumn.setAttribute('class', 'column-half');
-        var $createImg = document.createElement('img');
-        $createImg.setAttribute('src', dataObject.imgUrl);
-        $createImg.setAttribute('class', 'adjust-img column-full');
-        var $create2Column = document.createElement('div');
-        $create2Column.setAttribute('class', 'column-half');
-        var $createTitlediv = document.createElement('div');
-        $createTitlediv.setAttribute('class', 'list-title row adjust-position');
-        $createTitlediv.textContent = dataObject.titleText;
-        var $createIcon = document.createElement('i');
-        $createIcon.setAttribute('class', 'fa-solid fa-pen-to-square');
-        $createIcon.setAttribute('data-entry-id', dataObject.entryId);
+        var $allList = document.querySelectorAll('li');
+        for (var j = 0; j < $allList.length; j++) {
+          if ($allList[j].getAttribute('data-entry-id') === data.editing.entryId.toString()) {
+            var $currentListItem = $allList[j];
+            $currentListItem.setAttribute('data-entry-id', editId);
+            var $createRow = document.createElement('div');
+            $createRow.setAttribute('class', 'row');
+            var $createColumn = document.createElement('div');
+            $createColumn.setAttribute('class', 'column-half');
+            var $createImg = document.createElement('img');
+            $createImg.setAttribute('src', dataObject.imgUrl);
+            $createImg.setAttribute('class', 'adjust-img column-full');
+            var $create2Column = document.createElement('div');
+            $create2Column.setAttribute('class', 'column-half');
+            var $createTitlediv = document.createElement('div');
+            $createTitlediv.setAttribute('class', 'list-title row adjust-position');
+            $createTitlediv.textContent = dataObject.titleText;
+            var $createIcon = document.createElement('i');
+            $createIcon.setAttribute('class', 'fa-solid fa-pen-to-square');
+            $createIcon.setAttribute('data-entry-id', dataObject.entryId);
 
-        var $createContentdiv = document.createElement('div');
-        $createContentdiv.setAttribute('class', 'list-content');
-        $createContentdiv.textContent = dataObject.notesText;
+            var $createContentdiv = document.createElement('div');
+            $createContentdiv.setAttribute('class', 'list-content');
+            $createContentdiv.textContent = dataObject.notesText;
 
-        $createRow.appendChild($createColumn);
-        $createColumn.appendChild($createImg);
-        $createRow.appendChild($create2Column);
-        $create2Column.appendChild($createTitlediv);
-        $createTitlediv.appendChild($createIcon);
-        $create2Column.appendChild($createContentdiv);
+            $createRow.appendChild($createColumn);
+            $createColumn.appendChild($createImg);
+            $createRow.appendChild($create2Column);
+            $create2Column.appendChild($createTitlediv);
+            $createTitlediv.appendChild($createIcon);
+            $create2Column.appendChild($createContentdiv);
 
-        $currentListItem.replaceWith($createRow);
-        var $unOrderedList = document.querySelector('ul');
-        $unOrderedList.addEventListener('click', editing);
-        viewEntries();
-
+            $currentListItem.replaceWith($createRow);
+            var $unOrderedList = document.querySelector('ul');
+            $unOrderedList.addEventListener('click', editing);
+            viewEntries();
+          }
+        }
       }
     }
 
