@@ -23,16 +23,36 @@ function submited(event) {
   var dataObject = {
     titleText: title,
     notesText: notes,
-    imgUrl: img,
-    entryId: data.nextEntryId
+    imgUrl: img
   };
-  data.nextEntryId++;
-  data.entries.unshift(dataObject);
+  if (data.editing !== null) {
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId === data.editing.entryId) {
+        data.entries[i].titleText = dataObject.titleText;
+        data.entries[i].notesText = dataObject.notesText;
+        data.entries[i].imgUrl = dataObject.imgUrl;
+        var $allList = document.querySelectorAll('li');
+        for (var j = 0; j < $allList.length; j++) {
+          if ($allList[j].getAttribute('data-entry-id') === data.editing.entryId.toString()) {
+            $allList[j].replaceWith(generateEntryDomTree(data.editing));
+            viewEntries();
+          }
+        }
+      }
+    }
+
+  } else {
+    dataObject.entryId = data.nextEntryId;
+    data.nextEntryId++;
+    data.entries.unshift(dataObject);
+    var $selectContainer = document.querySelector('ul');
+    $selectContainer.prepend(generateEntryDomTree(data.entries[0]));
+    viewEntries();
+  }
+
+  data.editing = null;
   $imgHolder.setAttribute('src', 'images/placeholder-image-square.jpg');
   $submit.reset();
-
-  var $selectContainer = document.querySelector('ul');
-  $selectContainer.prepend(generageEntryDomTree(data.entries[0]));
 
   if (data.entries.length === 1) {
     var $selectNoRecordElement = document.querySelector('.set-middle');
@@ -43,8 +63,9 @@ function submited(event) {
 }
 
 window.addEventListener('DOMContentLoaded', loadDomTree);
-function generageEntryDomTree(entry) {
+function generateEntryDomTree(entry) {
   var $createList = document.createElement('li');
+  $createList.setAttribute('data-entry-id', entry.entryId);
   var $createRow = document.createElement('div');
   $createRow.setAttribute('class', 'row');
   var $createColumn = document.createElement('div');
@@ -55,8 +76,12 @@ function generageEntryDomTree(entry) {
   var $create2Column = document.createElement('div');
   $create2Column.setAttribute('class', 'column-half');
   var $createTitlediv = document.createElement('div');
-  $createTitlediv.setAttribute('class', 'list-title');
+  $createTitlediv.setAttribute('class', 'list-title row adjust-position');
   $createTitlediv.textContent = entry.titleText;
+  var $createIcon = document.createElement('i');
+  $createIcon.setAttribute('class', 'fa-solid fa-pen-to-square');
+  $createIcon.setAttribute('data-entry-id', entry.entryId);
+
   var $createContentdiv = document.createElement('div');
   $createContentdiv.setAttribute('class', 'list-content');
   $createContentdiv.textContent = entry.notesText;
@@ -66,6 +91,7 @@ function generageEntryDomTree(entry) {
   $createColumn.appendChild($createImg);
   $createRow.appendChild($create2Column);
   $create2Column.appendChild($createTitlediv);
+  $createTitlediv.appendChild($createIcon);
   $create2Column.appendChild($createContentdiv);
 
   return $createList;
@@ -73,7 +99,7 @@ function generageEntryDomTree(entry) {
 function loadDomTree(event) {
   var $selectContainer = document.querySelector('ul');
   for (var i = 0; i < data.entries.length; i++) {
-    var $appendToview = generageEntryDomTree(data.entries[i]);
+    var $appendToview = generateEntryDomTree(data.entries[i]);
     $selectContainer.appendChild($appendToview);
   }
 }
@@ -96,9 +122,45 @@ $anchor.addEventListener('click', toNewEntry);
 function toNewEntry(event) {
   for (var i = 0; i < $views.length; i++) {
     if ($views[i].getAttribute('data-view') === 'entry-form') {
+      clean();
       $views[i].className = 'view';
     } else if ($views[i].getAttribute('data-view') !== 'entry-form') {
       $views[i].className = 'view hidden';
     }
   }
+}
+
+var $unOrderedList = document.querySelector('ul');
+$unOrderedList.addEventListener('click', editing);
+
+function editing(event) {
+  var $icon = document.querySelectorAll('i');
+  var $list = document.querySelectorAll('li');
+  for (var i = 0; i < $list.length; i++) {
+    if ($list[i].getAttribute('data-entry-id') === (data.entries[i].entryId).toString() && event.target.getAttribute('data-entry-id') === $icon[i].getAttribute('data-entry-id')) {
+      data.editing = data.entries[i];
+      toNewEntry();
+      var $header = document.querySelector('#form-title');
+      $header.innerHTML = 'Edit Entry';
+      var $title = document.querySelector('#title');
+      $title.value = data.entries[i].titleText;
+      var $notes = document.querySelector('#notes');
+      $notes.value = data.entries[i].notesText;
+      var $photoUrl = document.querySelector('#photo-url');
+      $photoUrl.value = data.entries[i].imgUrl;
+      $imgHolder.setAttribute('src', data.entries[i].imgUrl);
+    }
+  }
+}
+
+function clean() {
+  var $header = document.querySelector('#form-title');
+  $header.innerHTML = 'New Entry';
+  var $title = document.querySelector('#title');
+  $title.value = '';
+  var $notes = document.querySelector('#notes');
+  $notes.value = '';
+  var $photoUrl = document.querySelector('#photo-url');
+  $photoUrl.value = '';
+  $imgHolder.setAttribute('src', 'images/placeholder-image-square.jpg');
 }
