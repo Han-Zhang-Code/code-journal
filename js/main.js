@@ -34,34 +34,7 @@ function submited(event) {
         var $allList = document.querySelectorAll('li');
         for (var j = 0; j < $allList.length; j++) {
           if ($allList[j].getAttribute('data-entry-id') === data.editing.entryId.toString()) {
-            var $currentListItem = $allList[j];
-            $currentListItem.setAttribute('data-entry-id', data.editing.entryId);
-            var $createRow = document.createElement('div');
-            $createRow.setAttribute('class', 'row');
-            var $createColumn = document.createElement('div');
-            $createColumn.setAttribute('class', 'column-half');
-            var $createImg = document.createElement('img');
-            $createImg.setAttribute('src', dataObject.imgUrl);
-            $createImg.setAttribute('class', 'adjust-img column-full');
-            var $create2Column = document.createElement('div');
-            $create2Column.setAttribute('class', 'column-half');
-            var $createTitlediv = document.createElement('div');
-            $createTitlediv.setAttribute('class', 'list-title row adjust-position');
-            $createTitlediv.textContent = dataObject.titleText;
-            var $createIcon = document.createElement('i');
-            $createIcon.setAttribute('class', 'fa-solid fa-pen-to-square');
-            $createIcon.setAttribute('data-entry-id', dataObject.entryId);
-            var $createContentdiv = document.createElement('div');
-            $createContentdiv.setAttribute('class', 'list-content');
-            $createContentdiv.textContent = dataObject.notesText;
-
-            $createRow.appendChild($createColumn);
-            $createColumn.appendChild($createImg);
-            $createRow.appendChild($create2Column);
-            $create2Column.appendChild($createTitlediv);
-            $createTitlediv.appendChild($createIcon);
-            $create2Column.appendChild($createContentdiv);
-            $currentListItem.replaceWith($createRow);
+            $allList[j].replaceWith(generateEntryDomTree(data.editing));
             viewEntries();
           }
         }
@@ -73,7 +46,7 @@ function submited(event) {
     data.nextEntryId++;
     data.entries.unshift(dataObject);
     var $selectContainer = document.querySelector('ul');
-    $selectContainer.prepend(generageEntryDomTree(data.entries[0]));
+    $selectContainer.prepend(generateEntryDomTree(data.entries[0]));
     viewEntries();
   }
 
@@ -90,7 +63,7 @@ function submited(event) {
 }
 
 window.addEventListener('DOMContentLoaded', loadDomTree);
-function generageEntryDomTree(entry) {
+function generateEntryDomTree(entry) {
   var $createList = document.createElement('li');
   $createList.setAttribute('data-entry-id', entry.entryId);
   var $createRow = document.createElement('div');
@@ -126,7 +99,7 @@ function generageEntryDomTree(entry) {
 function loadDomTree(event) {
   var $selectContainer = document.querySelector('ul');
   for (var i = 0; i < data.entries.length; i++) {
-    var $appendToview = generageEntryDomTree(data.entries[i]);
+    var $appendToview = generateEntryDomTree(data.entries[i]);
     $selectContainer.appendChild($appendToview);
   }
 }
