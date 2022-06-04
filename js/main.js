@@ -25,19 +25,17 @@ function submited(event) {
     notesText: notes,
     imgUrl: img
   };
-  var editId;
   if (data.editing !== null) {
     for (var i = 0; i < data.entries.length; i++) {
       if (data.entries[i].entryId === data.editing.entryId) {
-        editId = i;
-        data.entries[editId].titleText = dataObject.titleText;
-        data.entries[editId].notesText = dataObject.notesText;
-        data.entries[editId].imgUrl = dataObject.imgUrl;
+        data.entries[i].titleText = dataObject.titleText;
+        data.entries[i].notesText = dataObject.notesText;
+        data.entries[i].imgUrl = dataObject.imgUrl;
         var $allList = document.querySelectorAll('li');
         for (var j = 0; j < $allList.length; j++) {
           if ($allList[j].getAttribute('data-entry-id') === data.editing.entryId.toString()) {
             var $currentListItem = $allList[j];
-            $currentListItem.setAttribute('data-entry-id', editId);
+            $currentListItem.setAttribute('data-entry-id', data.editing.entryId);
             var $createRow = document.createElement('div');
             $createRow.setAttribute('class', 'row');
             var $createColumn = document.createElement('div');
@@ -53,7 +51,6 @@ function submited(event) {
             var $createIcon = document.createElement('i');
             $createIcon.setAttribute('class', 'fa-solid fa-pen-to-square');
             $createIcon.setAttribute('data-entry-id', dataObject.entryId);
-
             var $createContentdiv = document.createElement('div');
             $createContentdiv.setAttribute('class', 'list-content');
             $createContentdiv.textContent = dataObject.notesText;
@@ -64,10 +61,7 @@ function submited(event) {
             $create2Column.appendChild($createTitlediv);
             $createTitlediv.appendChild($createIcon);
             $create2Column.appendChild($createContentdiv);
-
             $currentListItem.replaceWith($createRow);
-            var $unOrderedList = document.querySelector('ul');
-            $unOrderedList.addEventListener('click', editing);
             viewEntries();
           }
         }
