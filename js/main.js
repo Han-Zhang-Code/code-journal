@@ -151,6 +151,12 @@ function editing(event) {
       $imgHolder.setAttribute('src', data.entries[i].imgUrl);
     }
   }
+  var $selectRow = document.querySelector('#submit-row');
+  $selectRow.className = 'row add-delete';
+  var $deleteAnchor = document.querySelector('.delete');
+  $deleteAnchor.className = 'delete';
+
+  $deleteAnchor.addEventListener('click', goToModal);
 }
 
 function clean() {
@@ -163,4 +169,27 @@ function clean() {
   var $photoUrl = document.querySelector('#photo-url');
   $photoUrl.value = '';
   $imgHolder.setAttribute('src', 'images/placeholder-image-square.jpg');
+  var $selectRow = document.querySelector('#submit-row');
+  $selectRow.className = 'row adjust-button-position';
+  var $deleteAnchor = document.querySelector('.delete');
+  $deleteAnchor.className = 'delete hidden';
+
+}
+
+function goToModal() {
+  var $selectModal = document.querySelector('#modal');
+  $selectModal.className = 'modal row';
+  var $cancelDelete = document.querySelector('.close-button');
+  $cancelDelete.addEventListener('click', cancelDelete);
+  var $confirmDelete = document.querySelector('.confirm-button');
+  $confirmDelete.addEventListener('click', confirmDelete);
+}
+
+function cancelDelete() {
+  event.preventDefault();
+  var $selectModal = document.querySelector('#modal');
+  $selectModal.className = 'modal row hidden';
+}
+function confirmDelete() {
+  // console.log(0);
 }

@@ -56,7 +56,7 @@
   padding-bottom: 50px;
 }
 
-button {
+.button {
   background-color: #552b81;
   color: white;
   border: none;
@@ -132,4 +132,55 @@ ul {
 
 .adjust-anchor:hover {
   cursor: pointer;
+}
+
+.add-delete {
+  justify-content: space-between;
+  padding-bottom: 50px;
+}
+
+.delete {
+  color: red;
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(50 50 50 / 90%);
+}
+
+.modal-content {
+  background-color: white;
+  width: 500px;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  flex-direction: column;
+}
+
+.close-button {
+  background-color: #b6b6b6;
+  border-radius: 5px;
+  border: none;
+  color: black;
+  font-size: 15px;
+  width: 80px;
+  height: 30px;
+  margin-right: 100px;
+  margin-top: 30px;
+}
+
+.confirm-button {
+  background-color: #dc2625;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-size: 15px;
+  width: 80px;
+  height: 30px;
+  margin-top: 30px;
 }
