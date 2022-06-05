@@ -13,7 +13,6 @@ function addImg(event) {
 var $submit = document.querySelector('#entry-form');
 var $title = document.querySelector('#title');
 var $notes = document.querySelector('#notes');
-
 $submit.addEventListener('submit', submited);
 function submited(event) {
   event.preventDefault();
@@ -40,7 +39,6 @@ function submited(event) {
         }
       }
     }
-
   } else {
     dataObject.entryId = data.nextEntryId;
     data.nextEntryId++;
@@ -49,16 +47,13 @@ function submited(event) {
     $selectContainer.prepend(generateEntryDomTree(data.entries[0]));
     viewEntries();
   }
-
   data.editing = null;
   $imgHolder.setAttribute('src', 'images/placeholder-image-square.jpg');
   $submit.reset();
-
   if (data.entries.length === 1) {
     var $selectNoRecordElement = document.querySelector('.set-middle');
     $selectNoRecordElement.className = 'set-middle hidden';
   }
-
   viewEntries();
 }
 
@@ -81,11 +76,9 @@ function generateEntryDomTree(entry) {
   var $createIcon = document.createElement('i');
   $createIcon.setAttribute('class', 'fa-solid fa-pen-to-square');
   $createIcon.setAttribute('data-entry-id', entry.entryId);
-
   var $createContentdiv = document.createElement('div');
   $createContentdiv.setAttribute('class', 'list-content');
   $createContentdiv.textContent = entry.notesText;
-
   $createList.appendChild($createRow);
   $createRow.appendChild($createColumn);
   $createColumn.appendChild($createImg);
@@ -93,7 +86,6 @@ function generateEntryDomTree(entry) {
   $create2Column.appendChild($createTitlediv);
   $createTitlediv.appendChild($createIcon);
   $create2Column.appendChild($createContentdiv);
-
   return $createList;
 }
 function loadDomTree(event) {
@@ -129,10 +121,8 @@ function toNewEntry(event) {
     }
   }
 }
-
 var $unOrderedList = document.querySelector('ul');
 $unOrderedList.addEventListener('click', editing);
-
 function editing(event) {
   var $icon = document.querySelectorAll('i');
   var $list = document.querySelectorAll('li');
@@ -155,7 +145,6 @@ function editing(event) {
   $selectRow.className = 'row add-delete';
   var $deleteAnchor = document.querySelector('.delete');
   $deleteAnchor.className = 'delete';
-
   $deleteAnchor.addEventListener('click', goToModal);
 }
 
@@ -173,12 +162,11 @@ function clean() {
   $selectRow.className = 'row adjust-button-position';
   var $deleteAnchor = document.querySelector('.delete');
   $deleteAnchor.className = 'delete hidden';
-
 }
 
 function goToModal() {
   var $selectModal = document.querySelector('#modal');
-  $selectModal.className = 'modal row';
+  $selectModal.className = 'modal row column-full';
   var $cancelDelete = document.querySelector('.close-button');
   $cancelDelete.addEventListener('click', cancelDelete);
   var $confirmDelete = document.querySelector('.confirm-button');
@@ -190,10 +178,11 @@ function cancelDelete() {
   var $selectModal = document.querySelector('#modal');
   $selectModal.className = 'modal row hidden';
 }
+
 function confirmDelete(event) {
   event.preventDefault();
   var $selectModal = document.querySelector('#modal');
-  $selectModal.className = 'modal row hidden';
+  $selectModal.className = 'modal row column-full hidden';
   var $list = document.querySelectorAll('li');
   for (var i = 0; i < $list.length; i++) {
     if ($list[i].getAttribute('data-entry-id') === (data.editing.entryId).toString()) {
@@ -201,6 +190,7 @@ function confirmDelete(event) {
       data.entries.splice(i, 1);
     }
   }
+  data.editing = null;
   viewEntries();
   if (data.entries.length === 0) {
     var $selectNoRecordElement = document.querySelector('.set-middle');
