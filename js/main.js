@@ -1,7 +1,7 @@
 /* global data */
 if (data.entries.length !== 0) {
   var $selectNoRecordElement = document.querySelector('.set-middle');
-  $selectNoRecordElement.className = 'hidden';
+  $selectNoRecordElement.className = 'set-middle hidden';
 }
 var $photourl = document.querySelector('#photo-url');
 var $imgHolder = document.querySelector('.adjust-img');
@@ -56,7 +56,7 @@ function submited(event) {
 
   if (data.entries.length === 1) {
     var $selectNoRecordElement = document.querySelector('.set-middle');
-    $selectNoRecordElement.className = 'hidden';
+    $selectNoRecordElement.className = 'set-middle hidden';
   }
 
   viewEntries();
@@ -190,6 +190,21 @@ function cancelDelete() {
   var $selectModal = document.querySelector('#modal');
   $selectModal.className = 'modal row hidden';
 }
-function confirmDelete() {
-  // console.log(0);
+function confirmDelete(event) {
+  event.preventDefault();
+  var $selectModal = document.querySelector('#modal');
+  $selectModal.className = 'modal row hidden';
+  var $list = document.querySelectorAll('li');
+  for (var i = 0; i < $list.length; i++) {
+    if ($list[i].getAttribute('data-entry-id') === (data.editing.entryId).toString()) {
+      $list[i].remove();
+      data.entries.splice(i, 1);
+    }
+  }
+  viewEntries();
+  if (data.entries.length === 0) {
+    var $selectNoRecordElement = document.querySelector('.set-middle');
+    $selectNoRecordElement.className = 'set-middle';
+  }
+
 }
